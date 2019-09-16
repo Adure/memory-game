@@ -1,0 +1,23 @@
+#root
+{
+
+}
+
+#game-board
+{
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-flow: row wrap;
+    height: 1000px;
+    width: 944px;
+    margin: auto;
+}
+
+.card
+{
+    width: 190px;
+    height: 200px;
+    background-color: lightblue;
+    margin: auto;
+}
