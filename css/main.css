@@ -3,6 +3,11 @@
 
 }
 
+.restart-button
+{
+    position: absolute;
+}
+
 #game-board
 {
     display: flex;
@@ -17,7 +22,7 @@
 .card
 {
     width: 190px;
-    height: 200px;
+    height: 190px;
     background-color: lightblue;
     margin: auto;
 }
