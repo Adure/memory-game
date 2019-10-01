@@ -4,9 +4,9 @@ Array.prototype.random = function () {
 }
 
 // Wait until all page content loaded
-window.addEventListener('DOMContentLoaded', function() {
-    // Restart game button click event
-    document.getElementById("restart-button").addEventListener("click", function() {
+window.addEventListener('load', function() {
+    // Game initialisation function
+    function initGame() {
         let possibilities =
             ["python", "python",
              "javascript", "javascript",
@@ -51,15 +51,21 @@ window.addEventListener('DOMContentLoaded', function() {
 
         // Finally add back game board element to the page
         document.getElementById("root").appendChild(gameBoard)
+    }
 
-        // Game board click event
-        document.getElementById("game-board").addEventListener("click", function(e) {
-            let target = e.target;
+    initGame();
 
-            // If card was pressed
-            if (target.className) {
-                console.log(target.className)
-            }
-        });
+    document.getElementById("restart-button").addEventListener("click", function() {
+        initGame();
+    });
+
+    // Game board click event
+    document.getElementById("game-board").addEventListener("click", function(e) {
+        let target = e.target;
+
+        // If card was pressed
+        if (target.className) {
+            console.log(target.className)
+        }
     });
 });
