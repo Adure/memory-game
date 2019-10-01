@@ -31,9 +31,10 @@
 .flip-container {
 	perspective: 1000px;
 }
-	.flip-container.flip .card {
-		transform: rotateY(180deg);
-	}
+
+.flip-container.flip .card {
+	transform: rotateY(180deg);
+}
 
 .flip-container, .front, .back {
 	width: 190px;
