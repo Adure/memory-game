@@ -7,7 +7,7 @@ Array.prototype.random = function () {
 window.addEventListener('DOMContentLoaded', function() {
     // Restart game button click event
     document.getElementById("restart-button").addEventListener("click", function() {
-        let possibilities = 
+        let possibilities =
             ["python", "python",
              "javascript", "javascript",
              "java", "java",
@@ -26,14 +26,25 @@ window.addEventListener('DOMContentLoaded', function() {
 
         // Create card elements, assign random type, then append to doc fragment
         for (let i = 0; i < 16; i++) {
+            let container = document.createElement("div");
             let card = document.createElement("div");
+            let front = document.createElement("div");
+            let back = document.createElement("div");
+
             let choice = possibilities.random();
             let index = possibilities.indexOf(choice);
             possibilities.splice(index, 1);
-            card.innerText = choice;
+            back.innerText = choice;
+            container.setAttribute("class", "flip-container");
+            container.setAttribute("onclick", "this.classList.toggle('flip');");
             card.setAttribute("class", `card ${choice}`);
+            front.setAttribute("class", "front");
+            back.setAttribute("class", "back");
 
-            fragment.appendChild(card);
+            card.appendChild(front);
+            card.appendChild(back);
+            container.appendChild(card);
+            fragment.appendChild(container);
         }
         // Append doc fragment to game board div
         gameBoard.appendChild(fragment);
