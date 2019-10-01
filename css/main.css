@@ -18,6 +18,13 @@
     width: 944px;
     margin: auto;
     background-color: grey;
+    /* Disallow selection */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
 .front
@@ -37,56 +44,14 @@
 {
     display: flex;
     margin: auto;
-    padding: auto;
+    justify-content: center;
+    align-items: center;
 }
 
-.back.python
+img
 {
-    content: url("../img/python-logo.png");
-    /*height: 180px;*/
-    /*width: auto;*/
-}
-.back.javascript
-{
-    content: url("../img/javascript-logo.png");
-    /*height: 180px;*/
-    /*width: auto;*/
-}
-.back.java
-{
-    content: url("../img/java-logo.png");
-    /*height: 180px;*/
-    /*width: auto;*/
-}
-.back.cpp
-{
-    content: url("../img/cpp-logo.png");
-    /*height: 180px;*/
-    /*width: auto;*/
-}
-.back.go
-{
-    content: url("../img/go-logo.png");
-    /*height: 180px;*/
-    /*width: auto;*/
-}
-.back.c
-{
-    content: url("../img/c-logo.png");
-    /*height: 180px;*/
-    /*width: auto;*/
-}
-.back.rust
-{
-    content: url("../img/rust-logo.png");
-    /*height: 180px;*/
-    /*width: auto;*/
-}
-.back.ruby
-{
-    content: url("../img/ruby-logo.png");
-    /*height: 180px;*/
-    /*width: auto;*/
+    height: 150px;
+    width: auto;
 }
 
 .card
@@ -136,6 +101,6 @@
 }
 
 /* back, initially hidden pane */
-.back {
+div.back {
 	transform: rotateY(180deg);
 }
