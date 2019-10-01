@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function() {
             ["python", "python",
              "javascript", "javascript",
              "java", "java",
-             "c++", "c++",
+             "cpp", "cpp",
              "go", "go",
              "c", "c",
              "rust", "rust",
@@ -38,8 +38,8 @@ window.addEventListener('DOMContentLoaded', function() {
             container.setAttribute("class", "flip-container");
             container.setAttribute("onclick", "this.classList.toggle('flip');");
             card.setAttribute("class", `card ${choice}`);
-            front.setAttribute("class", "front");
-            back.setAttribute("class", "back");
+            front.setAttribute("class", `front ${choice}`);
+            back.setAttribute("class", `back ${choice}`);
 
             card.appendChild(front);
             card.appendChild(back);

@@ -14,9 +14,51 @@
     justify-content: space-around;
     align-content: space-around;
     flex-flow: row wrap;
-    height: 1000px;
+    height: 900px;
     width: 944px;
     margin: auto;
+}
+
+.front
+{
+    content: url("../img/card-back.png");
+    border-style: outset;
+    border-width: 2px;
+    border-color: #1c6d82;
+    border-radius: 18px;
+}
+
+.back.python
+{
+    content: url("../img/python-logo.png");
+}
+.back.javascript
+{
+    content: url("../img/javascript-logo.png");
+}
+.back.java
+{
+    content: url("../img/java-logo.png");
+}
+.back.cpp
+{
+    content: url("../img/cpp-logo.png");
+}
+.back.go
+{
+    content: url("../img/go-logo.png");
+}
+.back.c
+{
+    content: url("../img/c-logo.png");
+}
+.back.rust
+{
+    content: url("../img/rust-logo.png");
+}
+.back.ruby
+{
+    content: url("../img/ruby-logo.png");
 }
 
 .card
@@ -25,6 +67,7 @@
     height: 190px;
     background-color: lightblue;
     margin: auto;
+    border-radius: 18px;
 }
 
 /* entire container, keeps perspective */
@@ -39,6 +82,7 @@
 .flip-container, .front, .back {
 	width: 190px;
 	height: 190px;
+    border-radius: 18px;
 }
 
 /* flip speed goes here */
