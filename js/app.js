@@ -24,7 +24,7 @@ window.addEventListener('load', function() {
 
         let fragment = document.createDocumentFragment();
 
-        // Create card elements, assign random type, then append to doc fragment
+        // Create and build card elements, assign random type, then append to doc fragment
         for (let i = 0; i < 16; i++) {
             let container = document.createElement("div");
             let card = document.createElement("div");
@@ -56,13 +56,46 @@ window.addEventListener('load', function() {
         // Finally add back game board element to the page
         document.getElementById("root").appendChild(gameBoard);
 
+        let score = 0;
+        let flipped = [];
+        let cards = [];
+        document.querySelector('.score').innerHTML = score;
         // Game board click event
         document.getElementById("game-board").addEventListener("click", function(e) {
             let target = e.target;
+            console.log(target);
 
             // If card was pressed
-            if (target.className) {
-                console.log(target.className);
+            if (target.className.includes('front')) {
+                let lang = target.className;
+                try { lang = lang.split(" ")[1]; }
+                finally { if(!lang) { lang = target.className; }};
+
+                flipped.push(lang);
+
+                // Disallow card from being flipped back over
+                target.parentElement.parentElement.removeAttribute("onclick");
+                cards.push(target.parentElement.parentElement);
+
+                if (cards.length == 2) {
+                    // If cards match
+                    if (flipped[0] == flipped[1]) {
+                        console.log("match!");
+                        score += 2;
+                        document.querySelector('.score').innerHTML = score;
+                        cards = [];
+                    } else {
+                        // Flip cards back over after 1/2 a second
+                        setTimeout(() => {
+                            for (let card of cards) {
+                                card.setAttribute("onclick", "this.classList.toggle('flip');");
+                                card.classList.toggle('flip');
+                            }
+                            cards = [];
+                        }, 500);
+                    }
+                    flipped = [];
+                }
             }
         });
     }
