@@ -37,7 +37,7 @@ window.addEventListener('load', function() {
             possibilities.splice(index, 1);
 
             img.setAttribute("src", `./img/${choice}-logo.png`);
-            img.setAttribute("class", choice);
+            img.setAttribute("class", `back ${choice}`);
             container.setAttribute("class", "flip-container");
             container.setAttribute("onclick", "this.classList.toggle('flip');");
             card.setAttribute("class", "card");
@@ -57,33 +57,29 @@ window.addEventListener('load', function() {
         document.getElementById("root").appendChild(gameBoard);
 
         let score = 0;
-        let flipped = [];
         let cards = [];
-        document.querySelector('.score').innerHTML = score;
+        let flipped = [];
+        let scoreEl = document.querySelector('.score');
+        scoreEl.innerHTML = score;
         // Game board click event
-        document.getElementById("game-board").addEventListener("click", function(e) {
+        gameBoard.addEventListener("click", function(e) {
             let target = e.target;
-            console.log(target);
 
             // If card was pressed
             if (target.className.includes('front')) {
-                let lang = target.className;
-                try { lang = lang.split(" ")[1]; }
-                finally { if(!lang) { lang = target.className; }};
-
-                flipped.push(lang);
+                flipped.push(target);
 
                 // Disallow card from being flipped back over
                 target.parentElement.parentElement.removeAttribute("onclick");
                 cards.push(target.parentElement.parentElement);
 
-                if (cards.length == 2) {
+                if (flipped.length == 2) {
                     // If cards match
-                    if (flipped[0] == flipped[1]) {
-                        console.log("match!");
-                        score += 2;
-                        document.querySelector('.score').innerHTML = score;
+                    if ((flipped[0] !== flipped[1]) && (flipped[0].className === flipped[1].className)) {
+                        score += 4;
+                        scoreEl.innerHTML = score;
                         cards = [];
+                        flipped = [];
                     } else {
                         // Flip cards back over after 1/2 a second
                         setTimeout(() => {
@@ -92,9 +88,11 @@ window.addEventListener('load', function() {
                                 card.classList.toggle('flip');
                             }
                             cards = [];
+                            flipped = [];
                         }, 500);
+                        score -= 2;
+                        scoreEl.innerHTML = score;
                     }
-                    flipped = [];
                 }
             }
         });

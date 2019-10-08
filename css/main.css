@@ -35,12 +35,12 @@
     border-color: #1c6d82;
 }
 
-.flip-container, .card, .front, .back
+.flip-container, .card, .front, div.back
 {
     border-radius: 18px;
 }
 
-.back
+div.back
 {
     display: flex;
     margin: auto;
@@ -71,7 +71,7 @@ img
 	transform: rotateY(180deg);
 }
 
-.flip-container, .front, .back {
+.flip-container, .front, div.back {
 	width: 190px;
 	height: 190px;
 }
@@ -85,7 +85,7 @@ img
 }
 
 /* hide back of pane during swap */
-.front, .back {
+.front, div.back {
 	backface-visibility: hidden;
 
 	position: absolute;
