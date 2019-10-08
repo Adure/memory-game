@@ -78,7 +78,7 @@ img
 
 /* flip speed goes here */
 .card {
-	transition: 0.5s;
+	transition: 0.4s;
 	transform-style: preserve-3d;
 
 	position: relative;
