@@ -56,6 +56,7 @@ window.addEventListener('load', function() {
         document.getElementById("root").appendChild(gameBoard);
 
         let timerEl = document.querySelector(".timer");
+        timerEl.innerHTML = "0:0";
         let startTime = new Date().getTime();
         timerFunc = function() {
             let e = new Date().getTime() - startTime;
@@ -64,6 +65,7 @@ window.addEventListener('load', function() {
         let timer = setInterval(timerFunc, 1000);
 
         let moveCount = 0;
+        document.querySelector('.moveCount').innerHTML = moveCount;
         let score = 0;
         let cards = [];
         let flipped = [];
@@ -116,6 +118,7 @@ window.addEventListener('load', function() {
                 stars[4].classList.add('checked');
             }
 
+            // End game if all cards are flipped over
             for (let e of document.getElementsByClassName("flip-container")) {
                 if (!e.classList.contains('flip')) {
                     return;
