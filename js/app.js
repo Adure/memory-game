@@ -37,7 +37,6 @@ window.addEventListener('load', function() {
             possibilities.splice(index, 1);
 
             img.setAttribute("src", `./img/${choice}-logo.png`);
-            img.setAttribute("class", `back ${choice}`);
             container.setAttribute("class", "flip-container");
             container.setAttribute("onclick", "this.classList.toggle('flip');");
             card.setAttribute("class", "card");
@@ -60,7 +59,55 @@ window.addEventListener('load', function() {
         let cards = [];
         let flipped = [];
         let scoreEl = document.querySelector('.score');
+        let stars = document.getElementsByClassName("fa fa-star");
         scoreEl.innerHTML = score;
+        stars[0].classList.remove('checked');
+        stars[1].classList.remove('checked');
+        stars[2].classList.remove('checked');
+        stars[3].classList.remove('checked');
+        stars[4].classList.remove('checked');
+
+        function updateScore(amount) {
+            score += amount;
+            scoreEl.innerHTML = score;
+
+            if (score >= 0) {
+                stars[0].classList.add('checked');
+                stars[1].classList.remove('checked');
+                stars[2].classList.remove('checked');
+                stars[3].classList.remove('checked');
+                stars[4].classList.remove('checked');
+            }
+            if (score >= 5) {
+                stars[0].classList.add('checked');
+                stars[1].classList.add('checked');
+                stars[2].classList.remove('checked');
+                stars[3].classList.remove('checked');
+                stars[4].classList.remove('checked');
+            }
+            if (score >= 10) {
+                stars[0].classList.add('checked');
+                stars[1].classList.add('checked');
+                stars[2].classList.add('checked');
+                stars[3].classList.remove('checked');
+                stars[4].classList.remove('checked');
+            }
+            if (score >= 15) {
+                stars[0].classList.add('checked');
+                stars[1].classList.add('checked');
+                stars[2].classList.add('checked');
+                stars[3].classList.add('checked');
+                stars[4].classList.remove('checked');
+            }
+            if (score >= 20) {
+                stars[0].classList.add('checked');
+                stars[1].classList.add('checked');
+                stars[2].classList.add('checked');
+                stars[3].classList.add('checked');
+                stars[4].classList.add('checked');
+            }
+        }
+
         // Game board click event
         gameBoard.addEventListener("click", function(e) {
             let target = e.target;
@@ -76,8 +123,7 @@ window.addEventListener('load', function() {
                 if (flipped.length == 2) {
                     // If cards match
                     if ((flipped[0] !== flipped[1]) && (flipped[0].className === flipped[1].className)) {
-                        score += 4;
-                        scoreEl.innerHTML = score;
+                        updateScore(4);
                         cards = [];
                         flipped = [];
                     } else {
@@ -90,8 +136,7 @@ window.addEventListener('load', function() {
                             cards = [];
                             flipped = [];
                         }, 500);
-                        score -= 2;
-                        scoreEl.innerHTML = score;
+                        updateScore(-2);
                     }
                 }
             }

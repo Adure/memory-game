@@ -8,6 +8,11 @@
     position: absolute;
 }
 
+.checked
+{
+    color: yellow;
+}
+
 #game-board
 {
     display: flex;
