@@ -55,6 +55,7 @@ window.addEventListener('load', function() {
         // Finally add back game board element to the page
         document.getElementById("root").appendChild(gameBoard);
 
+        let moveCount = 0;
         let score = 0;
         let cards = [];
         let flipped = [];
