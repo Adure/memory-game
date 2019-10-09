@@ -60,6 +60,9 @@ window.addEventListener('load', function() {
         let flipped = [];
         let scoreEl = document.querySelector('.score');
         let stars = document.getElementsByClassName("fa fa-star");
+        let modal = document.getElementById("victoryModal");
+        modal.style.display = "none";
+        let close = document.getElementsByClassName("close")[0];
         scoreEl.innerHTML = score;
         stars[0].classList.remove('checked');
         stars[1].classList.remove('checked');
@@ -106,6 +109,13 @@ window.addEventListener('load', function() {
                 stars[3].classList.add('checked');
                 stars[4].classList.add('checked');
             }
+
+            for (let e of document.getElementsByClassName("flip-container")) {
+                if (!e.classList.contains('flip')) {
+                    return;
+                }
+            }
+            modal.style.display = "block";
         }
 
         // Game board click event

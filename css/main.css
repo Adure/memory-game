@@ -68,21 +68,25 @@ img
 }
 
 /* entire container, keeps perspective */
-.flip-container {
+.flip-container 
+{
 	perspective: 1000px;
 }
 
-.flip-container.flip .card {
+.flip-container.flip .card 
+{
 	transform: rotateY(180deg);
 }
 
-.flip-container, .front, div.back {
+.flip-container, .front, div.back 
+{
 	width: 190px;
 	height: 190px;
 }
 
 /* flip speed goes here */
-.card {
+.card 
+{
 	transition: 0.4s;
 	transform-style: preserve-3d;
 
@@ -90,7 +94,8 @@ img
 }
 
 /* hide back of pane during swap */
-.front, div.back {
+.front, div.back 
+{
 	backface-visibility: hidden;
 
 	position: absolute;
@@ -99,13 +104,41 @@ img
 }
 
 /* front pane, placed above back */
-.front {
+.front 
+{
 	z-index: 2;
 	/* for firefox 31 */
 	transform: rotateY(0deg);
 }
 
 /* back, initially hidden pane */
-div.back {
+div.back 
+{
 	transform: rotateY(180deg);
+}
+
+/* The Modal (background) */
+.modal 
+{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content 
+{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
 }
