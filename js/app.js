@@ -55,17 +55,21 @@ window.addEventListener('load', function() {
         // Finally add back game board element to the page
         document.getElementById("root").appendChild(gameBoard);
 
-        let timerEl = document.querySelector(".timer");
-        timerEl.innerHTML = "0:0";
+        let timerEl = document.querySelector("#timer");
+        let timeEl = document.querySelector("#time");
         let startTime = new Date().getTime();
         timerFunc = function() {
             let e = new Date().getTime() - startTime;
-            timerEl.innerHTML = `${Math.floor((e % (1000 * 60 * 60)) / (1000 * 60))}:${Math.floor((e % (1000 * 60)) / 1000)}`;
+            let a = `${Math.floor((e % (1000 * 60 * 60)) / (1000 * 60))}:${Math.floor((e % (1000 * 60)) / 1000)}`;
+            timerEl.innerHTML = a;
+            timeEl.innerHTML = a;
         }
         let timer = setInterval(timerFunc, 1000);
 
         let moveCount = 0;
-        document.querySelector('.moveCount').innerHTML = moveCount;
+        let moveCountEl = document.querySelector('#moveCount');
+        let moveCountTotalEl = document.querySelector("#moveCountTotal");
+        moveCountEl.innerHTML = moveCount;
         let score = 0;
         let cards = [];
         let flipped = [];
@@ -124,6 +128,7 @@ window.addEventListener('load', function() {
                     return;
                 }
             }
+            document.getElementById("moveCountTotal").innerHTML = moveCount;
             modal.style.display = "block";
             clearInterval(timer);
         }
@@ -159,7 +164,8 @@ window.addEventListener('load', function() {
                         updateScore(-2);
                     }
                     moveCount += 1;
-                    document.querySelector('.moveCount').innerHTML = moveCount;
+                    moveCountEl.innerHTML = moveCount;
+                    moveCountTotalEl.innerHTML = moveCount;
                 }
             }
         });
