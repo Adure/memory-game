@@ -55,16 +55,22 @@ window.addEventListener('load', function() {
         // Finally add back game board element to the page
         document.getElementById("root").appendChild(gameBoard);
 
+        let timerEl = document.querySelector(".timer");
+        let startTime = new Date().getTime();
+        timerFunc = function() {
+            let e = new Date().getTime() - startTime;
+            timerEl.innerHTML = `${Math.floor((e % (1000 * 60 * 60)) / (1000 * 60))}:${Math.floor((e % (1000 * 60)) / 1000)}`;
+        }
+        let timer = setInterval(timerFunc, 1000);
+
         let moveCount = 0;
         let score = 0;
         let cards = [];
         let flipped = [];
-        let scoreEl = document.querySelector('.score');
         let stars = document.getElementsByClassName("fa fa-star");
         let modal = document.getElementById("victoryModal");
         modal.style.display = "none";
         let close = document.getElementsByClassName("close")[0];
-        scoreEl.innerHTML = score;
         stars[0].classList.remove('checked');
         stars[1].classList.remove('checked');
         stars[2].classList.remove('checked');
@@ -73,7 +79,6 @@ window.addEventListener('load', function() {
 
         function updateScore(amount) {
             score += amount;
-            scoreEl.innerHTML = score;
 
             if (score >= 0) {
                 stars[0].classList.add('checked');
@@ -117,6 +122,7 @@ window.addEventListener('load', function() {
                 }
             }
             modal.style.display = "block";
+            clearInterval(timer);
         }
 
         // Game board click event
@@ -149,6 +155,8 @@ window.addEventListener('load', function() {
                         }, 500);
                         updateScore(-2);
                     }
+                    moveCount += 1;
+                    document.querySelector('.moveCount').innerHTML = moveCount;
                 }
             }
         });
