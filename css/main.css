@@ -5,10 +5,10 @@
 
 .restart-button
 {
-    position: absolute;
+    /*position: absolute;*/
 }
 
-.stars
+.info
 {
     position: absolute;
 }
@@ -20,14 +20,20 @@
 
 #game-board
 {
+    /*position: absolute;*/
+    top: 0; right: 0; bottom: 0; left: 0;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    align-self: flex-start;
     display: flex;
     justify-content: space-around;
     align-content: space-around;
     flex-flow: row wrap;
-    height: 900px;
-    width: 944px;
-    margin: auto;
+    height: 800px;
+    width: 800px;
+    margin-left: 120px;
     background-color: grey;
+
     /* Disallow selection */
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

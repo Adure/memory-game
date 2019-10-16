@@ -56,12 +56,12 @@ window.addEventListener('load', function() {
         document.getElementById("root").appendChild(gameBoard);
 
         let timerEl = document.querySelector("#timer");
-        timerEl.innerHTML = "0:0"
+        timerEl.innerHTML = "0m 0s"
         let timeEl = document.querySelector("#time");
         let startTime = new Date().getTime();
         timerFunc = function() {
             let e = new Date().getTime() - startTime;
-            let a = `${Math.floor((e % (1000 * 60 * 60)) / (1000 * 60))}:${Math.floor((e % (1000 * 60)) / 1000)}`;
+            let a = `${Math.floor((e % (1000 * 60 * 60)) / (1000 * 60))}m ${Math.floor((e % (1000 * 60)) / 1000)}s`;
             timerEl.innerHTML = a;
             timeEl.innerHTML = a;
         }
@@ -71,18 +71,18 @@ window.addEventListener('load', function() {
         let moveCountEl = document.querySelector('#moveCount');
         let moveCountTotalEl = document.querySelector("#moveCountTotal");
         moveCountEl.innerHTML = moveCount;
-        let score = 0;
+        let score = 20;
         let cards = [];
         let flipped = [];
         let stars = document.querySelector(".stars");
         let modal = document.getElementById("victoryModal");
         modal.style.display = "none";
         let close = document.getElementsByClassName("close")[0];
-        stars.childNodes[1].classList.remove('checked');
-        stars.childNodes[3].classList.remove('checked');
-        stars.childNodes[5].classList.remove('checked');
-        stars.childNodes[7].classList.remove('checked');
-        stars.childNodes[9].classList.remove('checked');
+        stars.childNodes[1].classList.add('checked');
+        stars.childNodes[3].classList.add('checked');
+        stars.childNodes[5].classList.add('checked');
+        stars.childNodes[7].classList.add('checked');
+        stars.childNodes[9].classList.add('checked');
 
         function updateScore(amount) {
             score += amount;
@@ -150,7 +150,7 @@ window.addEventListener('load', function() {
                 if (flipped.length == 2) {
                     // If cards match
                     if ((flipped[0] !== flipped[1]) && (flipped[0].className === flipped[1].className)) {
-                        updateScore(4);
+                        updateScore(1);
                         cards = [];
                         flipped = [];
                     } else {
@@ -163,7 +163,7 @@ window.addEventListener('load', function() {
                             cards = [];
                             flipped = [];
                         }, 500);
-                        updateScore(-2);
+                        updateScore(-1);
                     }
                     moveCount += 1;
                     moveCountEl.innerHTML = moveCount;
