@@ -8,6 +8,11 @@
     position: absolute;
 }
 
+.stars
+{
+    position: absolute;
+}
+
 .checked
 {
     color: yellow;

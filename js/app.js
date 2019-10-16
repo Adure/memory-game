@@ -56,6 +56,7 @@ window.addEventListener('load', function() {
         document.getElementById("root").appendChild(gameBoard);
 
         let timerEl = document.querySelector("#timer");
+        timerEl.innerHTML = "0:0"
         let timeEl = document.querySelector("#time");
         let startTime = new Date().getTime();
         timerFunc = function() {
@@ -73,53 +74,53 @@ window.addEventListener('load', function() {
         let score = 0;
         let cards = [];
         let flipped = [];
-        let stars = document.getElementsByClassName("fa fa-star");
+        let stars = document.querySelector(".stars");
         let modal = document.getElementById("victoryModal");
         modal.style.display = "none";
         let close = document.getElementsByClassName("close")[0];
-        stars[0].classList.remove('checked');
-        stars[1].classList.remove('checked');
-        stars[2].classList.remove('checked');
-        stars[3].classList.remove('checked');
-        stars[4].classList.remove('checked');
+        stars.childNodes[1].classList.remove('checked');
+        stars.childNodes[3].classList.remove('checked');
+        stars.childNodes[5].classList.remove('checked');
+        stars.childNodes[7].classList.remove('checked');
+        stars.childNodes[9].classList.remove('checked');
 
         function updateScore(amount) {
             score += amount;
 
             if (score >= 0) {
-                stars[0].classList.add('checked');
-                stars[1].classList.remove('checked');
-                stars[2].classList.remove('checked');
-                stars[3].classList.remove('checked');
-                stars[4].classList.remove('checked');
+                stars.childNodes[1].classList.add('checked');
+                stars.childNodes[3].classList.remove('checked');
+                stars.childNodes[5].classList.remove('checked');
+                stars.childNodes[7].classList.remove('checked');
+                stars.childNodes[9].classList.remove('checked');
             }
             if (score >= 5) {
-                stars[0].classList.add('checked');
-                stars[1].classList.add('checked');
-                stars[2].classList.remove('checked');
-                stars[3].classList.remove('checked');
-                stars[4].classList.remove('checked');
+                stars.childNodes[1].classList.add('checked');
+                stars.childNodes[3].classList.add('checked');
+                stars.childNodes[5].classList.remove('checked');
+                stars.childNodes[7].classList.remove('checked');
+                stars.childNodes[9].classList.remove('checked');
             }
             if (score >= 10) {
-                stars[0].classList.add('checked');
-                stars[1].classList.add('checked');
-                stars[2].classList.add('checked');
-                stars[3].classList.remove('checked');
-                stars[4].classList.remove('checked');
+                stars.childNodes[1].classList.add('checked');
+                stars.childNodes[3].classList.add('checked');
+                stars.childNodes[5].classList.add('checked');
+                stars.childNodes[7].classList.remove('checked');
+                stars.childNodes[9].classList.remove('checked');
             }
             if (score >= 15) {
-                stars[0].classList.add('checked');
-                stars[1].classList.add('checked');
-                stars[2].classList.add('checked');
-                stars[3].classList.add('checked');
-                stars[4].classList.remove('checked');
+                stars.childNodes[1].classList.add('checked');
+                stars.childNodes[3].classList.add('checked');
+                stars.childNodes[5].classList.add('checked');
+                stars.childNodes[7].classList.add('checked');
+                stars.childNodes[9].classList.remove('checked');
             }
             if (score >= 20) {
-                stars[0].classList.add('checked');
-                stars[1].classList.add('checked');
-                stars[2].classList.add('checked');
-                stars[3].classList.add('checked');
-                stars[4].classList.add('checked');
+                stars.childNodes[1].classList.add('checked');
+                stars.childNodes[3].classList.add('checked');
+                stars.childNodes[5].classList.add('checked');
+                stars.childNodes[7].classList.add('checked');
+                stars.childNodes[9].classList.add('checked');
             }
 
             // End game if all cards are flipped over
@@ -128,6 +129,7 @@ window.addEventListener('load', function() {
                     return;
                 }
             }
+            document.querySelector(".modal-content").appendChild(stars.cloneNode(true));
             document.getElementById("moveCountTotal").innerHTML = moveCount;
             modal.style.display = "block";
             clearInterval(timer);
