@@ -5,8 +5,23 @@ Array.prototype.random = function () {
 
 // Wait until all page content loaded
 window.addEventListener('load', function() {
+
+    let timerEl = document.querySelector("#timer");
+    let timeEl = document.querySelector("#time");
+    timerEl.innerHTML = "0m 0s"
+    let startTime = new Date().getTime();
+
+    timerFunc = function() {
+        let e = new Date().getTime() - startTime;
+        let a = `${Math.floor((e % (1000 * 60 * 60)) / (1000 * 60))}m ${Math.floor((e % (1000 * 60)) / 1000)}s`;
+        timerEl.innerHTML = a;
+        timeEl.innerHTML = a;
+    }
+
     // Game initialisation function
     function initGame() {
+        startTime = new Date().getTime();
+        let timer = setInterval(timerFunc, 1000);
         let possibilities =
             ["python", "python",
              "javascript", "javascript",
@@ -54,18 +69,6 @@ window.addEventListener('load', function() {
 
         // Finally add back game board element to the page
         document.getElementById("root").appendChild(gameBoard);
-
-        let timerEl = document.querySelector("#timer");
-        timerEl.innerHTML = "0m 0s"
-        let timeEl = document.querySelector("#time");
-        let startTime = new Date().getTime();
-        timerFunc = function() {
-            let e = new Date().getTime() - startTime;
-            let a = `${Math.floor((e % (1000 * 60 * 60)) / (1000 * 60))}m ${Math.floor((e % (1000 * 60)) / 1000)}s`;
-            timerEl.innerHTML = a;
-            timeEl.innerHTML = a;
-        }
-        let timer = setInterval(timerFunc, 1000);
 
         let moveCount = 0;
         let moveCountEl = document.querySelector('#moveCount');
@@ -178,6 +181,7 @@ window.addEventListener('load', function() {
 
     // Re-initialise game on click of restart button
     document.getElementById("restart-button").addEventListener("click", function() {
+        clearInterval(timer);
         initGame();
     });
 });
